@@ -4,7 +4,7 @@
 
 extern msg_buf msg_bufs[MAX_BUF_NUM];
 /*------------------------------------------------------------------------
- *  send  -  Pass a message to a process and start recipient if waiting
+ *  send  -  Pass a message to a process and start recipient if waiting - checking git
  *------------------------------------------------------------------------
  */
 syscall	send(
