@@ -99,7 +99,7 @@ export
 # Specific additional rules and exceptions
 #--------------------------------------------------------------------------------
 
-xinu:	Makefile rebuild $(BLDDIRS) $(DEFSFILE) $(DEPSFILE) $(CONFH) $(CONFC) $(LD_LIST)
+xinu:	Makefile rebuild $(BLDDIRS) $(DEFSFILE) $(DEPSFILE) $(CONFH) $(CONFC) $(LD_LIST) ddlparsing
 	@echo;echo 'Loading object files to produce xinu'
 	@$(LD) $(LDFLAGS) $(LD_LIST) -o $(XINU) -L../cross_compiler/lib/gcc/arm-none-eabi/4.8.1/ -lgcc
 	@$(OBJCOPY) -O binary $(XINU) $(XINUBIN)
@@ -126,7 +126,10 @@ configure:
 	@echo forcing a rebuild of conf.h and conf.c
 	@make newversion
 	@(cd $(TOPDIR)/config; make install)
-
+ddlparsing:
+	@echo parsing the ddlfile
+	@make newversion
+	@(cd $(TOPDIR)/device; make install; make clean)
 clean:
 	@echo removing .o files
 	@rm -f ${LD_LIST}
